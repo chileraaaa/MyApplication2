@@ -1,0 +1,32 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+
+    }
+}
+dependencyResolutionManagement {
+    //repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+buildscript {
+    repositories {
+        google()   // 这里把google补上
+        maven {
+            url uri('./repo')
+        }
+    }
+
+    dependencies {
+        classpath("com.feifei.plugin:my-plugin:+")
+    }
+}
+
+rootProject.name = "MyApplication2"
+include ':app'
+include ':my-plugin'

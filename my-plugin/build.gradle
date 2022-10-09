@@ -1,0 +1,44 @@
+plugins {
+    id 'groovy'
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+repositories {
+    mavenCentral()
+}
+
+/*group = 'com.feifei.plugin'
+version = '1.0.0'*/
+
+publishing {
+    publications {
+        // 这里的 hello 可以任意命名
+        maven(MavenPublication) {
+            // 插件的组ID，建议设置为插件的包名
+            groupId = 'com.feifei.plugin'
+            // 翻译过来是 工件ID，我的理解是插件的名字
+            artifactId = 'my-plugin'
+            version = '1.0.3'
+            // 组件类型，我们的插件其实就是Java组件
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            // $rootDir 表示你项目的根目录
+           // url = "$rootDir/repo"
+
+            credentials {
+                username 'username' // 仓库发布用户名
+                password 'password' // 仓库发布用户密码
+            }
+            url 'trunk_url' // 仓库地址
+        }
+    }
+}
